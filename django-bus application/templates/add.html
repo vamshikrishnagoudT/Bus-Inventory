@@ -1,0 +1,16 @@
+ <html>
+ <head><title>Add Bus</title></head>
+ <body>
+     <h1>Add Bus</h1>
+     <form method="post">
+        {% csrf_token %}
+         {{ form.as_p }}  
+         {% comment %} <p>
+            <label for="id_bus_number">Bus Number:</label>
+            <input type="text" name="bus_number" id="id_bus_number" required>
+        </p> {% endcomment %}
+         <button type="submit">Add Bus</button>
+     </form>
+     <a href="/">Back to Inventory</a>
+ </body>
+ </html>
