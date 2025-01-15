@@ -1,41 +1,43 @@
-<!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title></title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="style.css"> 
-    <!-- <script src='main.js'></script> -->
-</head>
-<body>
-        <h1>Bus Inventory</h1>
-         <a href="add/">Add New Bus</a>
-         <table border="1">
-             <thead>
-                 <tr>
-                     <th>Bus Number</th>
-                     <th>Brand</th>
-                     <th>No of Seats</th>
-                     <th>Trip</th>
-                     <th>Trip Duration</th>
-                     <th>Conductor</th>
-                     <th>Driver</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 {% for bus in buses %}
-                 <tr>
-                     <td>{{ bus.bus_number }}</td>
-                     <td>{{ bus.brand }}</td>
-                     <td>{{ bus.no_of_seats }}</td>
-                     <td>{{ bus.trip }}</td>
-                     <td>{{ bus.trip_duration }}</td>
-                     <td>{{ bus.conductor }}</td>
-                     <td>{{ bus.driver }}</td>
-                 </tr>
-                 {% endfor %}
-             </tbody>
-         </table>
-     </body>
-</html>
+ <head><title>Bus Inventory</title></head>
+ <body>
+     <h1>Bus Inventory</h1>
+     <a href="add/">Add New Bus</a>
+     <table border="1">
+         <thead>
+            
+             <tr>
+                 <th>Bus Number</th>
+                 <th>Brand</th>
+                 <th>No of Seats</th>
+                 <th>Trip</th>
+                 <th>Trip Duration</th>
+                 <th>Conductor</th>
+                 <th>Driver</th>
+                 <th>Actions</th>
+                
+             </tr>
+         </thead>
+         <tbody>
+             {% for bus in buses%}
+             <tr>
+                 <td>{{bus.bus_number}}</td>
+                 <td>{{bus.brand}}</td>
+                 <td>{{bus.no_of_seats}}</td>
+                 <td>{{bus.trip}}</td>
+                 <td>{{bus.trip_duration}}</td>
+                 <td>{{bus.conductor}}</td>
+                 <td>{{bus.driver}}</td>
+                 <td>
+                    <a href="{% url 'delete-bus' bus.id %}">Delete</a>
+
+                    
+                 </td>
+                
+             </tr>
+             {%endfor%}
+             
+         </tbody>
+     </table>
+ </body>
+ </html>

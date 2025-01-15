@@ -1,14 +1,22 @@
- <html>
+<html>
  <head><title>Add Bus</title></head>
  <body>
      <h1>Add Bus</h1>
-     <form method="post">
-        {% csrf_token %}
-         {{ form.as_p }}  
-         {% comment %} <p>
-            <label for="id_bus_number">Bus Number:</label>
-            <input type="text" name="bus_number" id="id_bus_number" required>
-        </p> {% endcomment %}
+     <form method="post">{% csrf_token %}
+         <label for="bus_number">Bus Number:</label>
+         <input type="text" id="bus_number" name="bus-number" required><br>
+         <label for="brand">Brand:</label>
+         <input type="text" id="brand" name="brand" required><br>
+         <label for="no_of_seats">No of Seats:</label>
+         <input type="number" id="no_of_seats" name="no-of-seats" required><br>
+         <label for="trip">Trip:</label>
+         <input type="text" id="trip" name="trip" required><br>
+         <label for="trip_duration">Trip Duration:</label>
+         <input type="text" id="trip_duration" name="trip-duration" placeholder="HH:MM:SS" required><br>
+         <label for="conductor">Conductor:</label>
+         <input type="text" id="conductor" name="conductor" required><br>
+         <label for="driver">Driver:</label>
+         <input type="text" id="driver" name="driver" required><br>
          <button type="submit">Add Bus</button>
      </form>
      <a href="/">Back to Inventory</a>

@@ -1,0 +1,15 @@
+<html>
+    <head><title>Delete Bus</title></head>
+    <body>
+        <h1>Are you sure you want to delete this bus?</h1>
+        <p>Bus Number: {{ bus.bus_number }}</p>
+        <p>Trip: {{ bus.trip }}</p>
+        <form method="post" action="{% url 'delete-bus' bus.id %}">
+           {% csrf_token %}
+           <button type="submit">Yes, Delete</button>
+       </form>
+       
+        <a href="/">Cancel</a>
+    </body>
+    </html>
+   
