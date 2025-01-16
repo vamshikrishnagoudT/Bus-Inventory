@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, Http404
 from addPage.models import Bus
 from datetime import timedelta, datetime
+from django.http import HttpResponse, JsonResponse
+from rest_framework.decorators import api_view
 # Create your views here.
 def bus_list(request):
     buses=Bus.objects.all()
@@ -41,3 +43,26 @@ def delete_bus(request, bus_id):
         bus.delete()
         return redirect(bus_list)  # Ensure 'bus_list' is a valid URL name
     return render(request, 'delete.html', {'bus': bus})
+
+@api_view()
+def bus1_list(request):
+    movies=Bus.objects.all()
+    list1={'data':list(movies.values())}
+
+    return JsonResponse(list1)
+
+@api_view()
+def fetch_bus_less_than_31_seats(request):
+    buses = Bus.objects.filter(no_of_seats__lt=31)
+    list1 = {"data": list(buses.values())}
+    return JsonResponse(list1)
+
+
+  
+   
+    
+    
+    
+    
+    
+    
