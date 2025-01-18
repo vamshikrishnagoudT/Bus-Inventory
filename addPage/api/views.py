@@ -1,8 +1,14 @@
+from django.shortcuts import render
+from rest_framework.response import Response
+from addPage.api.serializers import BusSerializer
+# Create your views here.
 from django.shortcuts import render, redirect, Http404
 from addPage.models import Bus
 from datetime import timedelta, datetime
 from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
+from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 def bus_list(request):
     buses=Bus.objects.all()
@@ -46,21 +52,16 @@ def delete_bus(request, bus_id):
 
 @api_view()
 def bus1_list(request):
-    movies=Bus.objects.all()
-    list1={'data':list(movies.values())}
-
-    return JsonResponse(list1)
+    buses=Bus.objects.all()
+    data1=BusSerializer(buses, many=True)
+    return Response(data1.data)
 
 @api_view()
 def fetch_bus_less_than_31_seats(request):
-    buses = Bus.objects.filter(no_of_seats__lt=31)
-    list1 = {"data": list(buses.values())}
-    return JsonResponse(list1)
+    bus = Bus.objects.filter(no_of_seats__lt=31)
+    data1=BusSerializer(bus, many=True)
+    return Response(data1.data)
 
-
-  
-   
-    
     
     
     
