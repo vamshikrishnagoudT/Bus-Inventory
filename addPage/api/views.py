@@ -50,11 +50,40 @@ def delete_bus(request, bus_id):
         return redirect(bus_list)  # Ensure 'bus_list' is a valid URL name
     return render(request, 'delete.html', {'bus': bus})
 
-@api_view()
+@api_view(['GET','POST'])
 def bus1_list(request):
-    buses=Bus.objects.all()
-    data1=BusSerializer(buses, many=True)
-    return Response(data1.data)
+    if request.method=='GET':
+        buses=Bus.objects.all()
+        busdata=BusSerializer(buses, many=True)
+        return Response(busdata.data)
+    if request.method=="POST":
+        busdata=BusSerializer(data=request.data)
+        if busdata.is_valid():
+            busdata.save()
+            return Response(busdata.data)
+        else:
+            return Response(busdata.errors)
+
+@api_view(['GET','PUT','DELETE'])
+def bus_details(request, pk):
+    if request.method=="GET":
+        bus1=Bus.objects.get(pk=pk)
+        busdata=BusSerializer(bus1)
+        return Response(busdata.data)
+    if request.method=="PUT":
+        bus1=Bus.objects.get(pk=pk)
+        busdata=BusSerializer(bus1, data=request.data)
+        if busdata.is_valid():
+            busdata.save()
+            return Response(busdata.data)
+        else:
+            return Response(busdata.errors)
+    if request.method=="DELETE":
+        bus1=Bus.objects.get(pk=pk)
+        bus1.delete()
+        return Response(status=204)
+        
+
 
 @api_view()
 def fetch_bus_less_than_31_seats(request):

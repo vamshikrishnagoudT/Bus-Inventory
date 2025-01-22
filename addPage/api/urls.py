@@ -5,8 +5,7 @@ urlpatterns = [
     path('', bus_list, name="bus-list"),
     path('add/', add_bus, name="add-bus"),
     path('delete/<int:bus_id>/', delete_bus, name='delete-bus'),
-    path('api/', bus1_list),
+    path('list/', bus1_list, name="bus1-list"),
     path('less_than_31_seats/',fetch_bus_less_than_31_seats),
-    # path('api/buses/update/', update_bus_data, name='update_bus_data'),
-   
+    path('<int:pk>/', bus_details, name="bus-details"),
 ]
